@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>MReisz.com - Pomodoro Timer</title>
+  <meta name="description" content="Pomodoro Timer">
+  <meta name="author" content="Michael Reisz">
+
+  <link rel="stylesheet" href="./assets/css/pomodoro.min.css">
+</head>
+<body>
+
+  <div id="pomodoro-container">
+
+    <!-- Timer -->
+    <div id="timer">
+      <h1 id="time-remaining"></h1>
+      <svg id="circle-timer" xmlns="http://www.w3.org/2000/svg">
+        <circle id="timer-backdrop" class="circle" r="45%" cy="50%" cx="50%" />
+        <circle id="countdown-circle" class="circle" r="45%" cy="50%" cx="50%" />
+      </svg>
+    </div>
+
+    <div id="settings-container">
+
+      <!-- Session Length -->
+      <div id="session-length-container" class="length-container">
+        <svg id="increase-session-length" class="increase-length" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+          <path fill="#757575" d="M12 2.001c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zm5 11h-4v4h-2v-4H7v-2h4v-4h2v4h4v2z"/>
+        </svg>
+        <h1 id="session-length" class="length-display">25</h1>
+        <svg id="decrease-session-length" class="decrease-length" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+          <path fill="#757575" d="M12 2.001c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zm5 11H7v-2h10v2z"/>
+        </svg>
+      </div>
+
+      <!-- Break Length -->
+      <div id="break-length-container" class="length-container">
+        <svg id="increase-break-length" class="increase-length" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+          <path fill="#757575" d="M12 2.001c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zm5 11h-4v4h-2v-4H7v-2h4v-4h2v4h4v2z"/>
+        </svg>
+        <h1 id="break-length" class="length-display">5</h1>
+        <svg id="decrease-break-length" class="decrease-length" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+          <path fill="#757575" d="M12 2.001c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zm5 11H7v-2h10v2z"/>
+        </svg>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		 crossorigin="anonymous"></script>
+  <script src="assets/js/pomodoro.js"></script>
+</body>
+</html>
