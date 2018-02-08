@@ -91,6 +91,7 @@ body {
       width: 125px;
       border: 5px solid;
       border-radius: 50%;
+      overflow: hidden;
     }
 
     #session-length-container {
@@ -99,10 +100,30 @@ body {
       border-color: $session-circle;
     }
 
+    #increase-session-length,
+    #decrease-session-length {
+      background-color: $session-circle;
+      width: 100%;
+
+      &:hover {
+        background-color: darken($session-circle, 10%);
+      }
+    }
+
     #break-length-container {
       flex: 1;
       margin-left: 2em;
       border-color: $break-circle;
+    }
+
+    #increase-break-length,
+    #decrease-break-length {
+      background-color: $break-circle;
+      width: 100%;
+
+            &:hover {
+              background-color: darken($break-circle, 10%);
+            }
     }
 
     .increase-length,
@@ -111,12 +132,7 @@ body {
       cursor: pointer;
       height: 2em;
       width: 2em;
-    }
-
-    .increase-length:hover,
-    .decrease-length:hover {
-      transform: scale(1.1);
-      transform-origin: center center;
+      fill: $background-color;
     }
 
     .length-display {
