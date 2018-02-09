@@ -64,10 +64,17 @@ body {
         transform: rotate(-90deg);
         transform-origin: center center;
         transition: all 1s linear;
-        stroke: $session-circle;
         fill: $background-color;
         z-index: 99;
         // cursor: pointer;
+
+        &.session {
+          stroke: $session-circle;
+        }
+
+        &.break {
+          stroke: $break-circle;
+        }
       }
 
       #timer-backdrop {

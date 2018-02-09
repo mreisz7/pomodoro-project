@@ -1,37 +1,18 @@
-var timerLength = 25 * 60;
+var sessionLength = 25 * 60;
+var breakLength = 5 * 60;
+var timerLength = sessionLength;
 var timerStart = timerLength;
-var sessionLength;
-var breakLength;
-var circumference = Math.round(document.getElementById('countdown-circle').getBBox().width * 3.14159);
 var timer;
 var timerRunning = false;
-
-function startTimer() {
-  timerRunning = true;
-  timer = setInterval(function() {
-    $('#time-remaining').text(formatSeconds(timerLength));
-    $('#countdown-circle').css('stroke-dashoffset', -(circumference - (circumference * (timerLength / timerStart))));
-    if (timerLength == 0) {
-      stopTimer();
-      return;
-    }
-    timerLength--;
-  }, 1000);
-};
-
-function stopTimer() {
-  timerRunning = false;
-  clearInterval(timer);
-};
-
-
-function formatSeconds(seconds) {
-  var formattedTime = new Date(seconds * 1000).toISOString().substr(14, 5);
-  console.log(formattedTime);
-  return formattedTime
-};
+var currentTimer = "session";
+var circumference = Math.round(document.getElementById('countdown-circle').getBBox().width * 3.14159);
 
 $(document).ready(function() {
+
+  $('#time-remaining').text(timerLength.formatted());
+  $('#session-length').text(sessionLength.formatted());
+  $('#break-length').text(breakLength.formatted());
+  $('#countdown-circle').addClass('session');
   $('#countdown-circle').css('stroke-dashoffset', 0);
 
   $('#timer').on('click', function() {
@@ -56,18 +37,72 @@ $(document).ready(function() {
   });
 })
 
+Number.prototype.formatted = function () {
+    var sec_num = this; // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (minutes < 10) {minutes = "0" + minutes;}
+    if (seconds < 10) {seconds = "0" + seconds;}
+    if (hours == 0) {
+      return minutes + ":" + seconds;
+    } else {
+      return hours + ":" + minutes + ":" + seconds;
+    }
+}
+
+function startTimer() {
+  timerRunning = true;
+  timer = setInterval(function() {
+    $('#time-remaining').text(timerLength.formatted());
+    $('#countdown-circle').css('stroke-dashoffset', -(circumference - (circumference * (timerLength / timerStart))));
+    if (timerLength == 0) {
+      switchCurrentTimer();
+    }
+    timerLength--;
+  }, 1000);
+};
+
+function stopTimer() {
+  timerRunning = false;
+  clearInterval(timer);
+};
+
+function switchCurrentTimer() {
+  if (currentTimer == "session") {
+    currentTimer = "break";
+    timerLength = breakLength;
+    timerStart = timerLength;
+  } else {
+    currentTimer = "session";
+    timerLength = sessionLength;
+    timerStart = timerLength;
+  }
+  $('#countdown-circle').toggleClass('session break');
+}
+
 function changeTimerLength(timerType, direction) {
-  var newTimerLength = Number($('#' + timerType + '-length').attr('data-' + timerType + '-length'));
+  // Get the current timer length (in minutes rounded)
+  var newTimerLength = (timerType == "session") ? Math.round(sessionLength / 60) : Math.round(breakLength / 60);
   if (direction == "increase") {
     newTimerLength += 1;
-  } else if (direction == "decrease") {
+    if (timerType == currentTimer && newTimerLength > timerStart) {
+      timerStart = newTimerLength;
+    }
+  } else if (direction == "decrease" && (newTimerLength) > 0) {
     newTimerLength -= 1;
   }
-  $('#' + timerType + '-length').attr('data-' + timerType + '-length', newTimerLength);
-  $('#' + timerType + '-length').html(newTimerLength.toString() + ":00");
+  var newTimerLengthSeconds = newTimerLength * 60;
+  $('#' + timerType + '-length').html(newTimerLengthSeconds.formatted());
   if (timerType == 'session') {
-    sessionLength = newTimerLength * 60;
+    sessionLength = newTimerLengthSeconds;
   } else {
-    breakLength = newTimerLength * 60;
+    breakLength = newTimerLengthSeconds;
+  }
+  if (timerType == "session" && currentTimer == timerType) {
+    timerLength = sessionLength;
+  } else if (timerType == "break" && currentTimer == timerType) {
+    timerLength = breakLength;
   }
 }
