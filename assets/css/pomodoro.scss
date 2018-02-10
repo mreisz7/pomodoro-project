@@ -115,6 +115,7 @@ body {
     #increase-session-length,
     #decrease-session-length {
       background-color: $session-circle;
+      border-radius: 50%;
       width: 100%;
 
       &:hover {
@@ -131,6 +132,7 @@ body {
     #increase-break-length,
     #decrease-break-length {
       background-color: $break-circle;
+      border-radius: 50%;
       width: 100%;
 
             &:hover {
