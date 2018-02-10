@@ -8,6 +8,11 @@ $break-circle:      #0081ff;
 * {
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 html {
@@ -64,10 +69,17 @@ body {
         transform: rotate(-90deg);
         transform-origin: center center;
         transition: all 1s linear;
-        stroke: $session-circle;
         fill: $background-color;
         z-index: 99;
         // cursor: pointer;
+
+        &.session {
+          stroke: $session-circle;
+        }
+
+        &.break {
+          stroke: $break-circle;
+        }
       }
 
       #timer-backdrop {
@@ -91,6 +103,7 @@ body {
       width: 125px;
       border: 5px solid;
       border-radius: 50%;
+      overflow: hidden;
     }
 
     #session-length-container {
@@ -99,10 +112,32 @@ body {
       border-color: $session-circle;
     }
 
+    #increase-session-length,
+    #decrease-session-length {
+      background-color: $session-circle;
+      border-radius: 50%;
+      width: 100%;
+
+      &:hover {
+        background-color: darken($session-circle, 10%);
+      }
+    }
+
     #break-length-container {
       flex: 1;
       margin-left: 2em;
       border-color: $break-circle;
+    }
+
+    #increase-break-length,
+    #decrease-break-length {
+      background-color: $break-circle;
+      border-radius: 50%;
+      width: 100%;
+
+            &:hover {
+              background-color: darken($break-circle, 10%);
+            }
     }
 
     .increase-length,
@@ -111,12 +146,7 @@ body {
       cursor: pointer;
       height: 2em;
       width: 2em;
-    }
-
-    .increase-length:hover,
-    .decrease-length:hover {
-      transform: scale(1.1);
-      transform-origin: center center;
+      fill: $background-color;
     }
 
     .length-display {
