@@ -43,6 +43,10 @@ Number.prototype.formatted = function () {
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
+    if (this == 0) {
+      return "00:00";
+    }
+
     if (minutes < 10) {minutes = "0" + minutes;}
     if (seconds < 10) {seconds = "0" + seconds;}
     if (hours == 0) {
@@ -56,10 +60,22 @@ function startTimer() {
   timerRunning = true;
   timer = setInterval(function() {
     $('#time-remaining').text(timerLength.formatted());
-    $('#countdown-circle').css('stroke-dashoffset', -(circumference - (circumference * (timerLength / timerStart))));
     if (timerLength == 0) {
       switchCurrentTimer();
+      return;
     }
+    if (timerLength == 0 && timerStart == 0) {
+      stopTimer();
+      return;
+    }
+    if (sessionLength == 0 && breakLength == 0) {
+      stopTimer();
+      timerLength = 0;
+      timerStart = 0;
+      return;
+    }
+    var circleDashOffset = -(circumference - (circumference * (timerLength / timerStart)));
+    $('#countdown-circle').css('stroke-dashoffset', circleDashOffset);
     timerLength--;
   }, 1000);
 };
@@ -90,8 +106,9 @@ function changeTimerLength(timerType, direction) {
     if (timerType == currentTimer && newTimerLength > timerStart) {
       timerStart = newTimerLength;
     }
-  } else if (direction == "decrease" && (newTimerLength) > 0) {
+  } else if (direction == "decrease") {
     newTimerLength -= 1;
+    newTimerLength = (newTimerLength > 0) ? newTimerLength : 0;
   }
   var newTimerLengthSeconds = newTimerLength * 60;
   $('#' + timerType + '-length').html(newTimerLengthSeconds.formatted());
