@@ -122,4 +122,8 @@ function changeTimerLength(timerType, direction) {
   } else if (timerType == "break" && currentTimer == timerType) {
     timerLength = breakLength;
   }
+  if (timerRunning == false) {
+    timerStart = timerLength;
+  }
+  $('#time-remaining').text(timerLength.formatted());
 }
