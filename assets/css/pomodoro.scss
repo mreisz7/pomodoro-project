@@ -39,19 +39,46 @@ body {
     flex: none;
     position: relative;
 
-    #time-remaining {
-      display: block;
+    #timer-information {
       text-align: center;
       position: absolute;
-      font-size: 5rem;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
-      color: $font-color;
-      z-index: 100;
-      margin: 0;
       cursor: pointer;
+      z-index: 100;
+
+      #timer-type {
+        width: 100%;
+        margin: 0;
+        color: #FFFFFF;
+        text-transform: uppercase;
+      }
+
+      #time-remaining {
+        display: block;
+        font-size: 5rem;
+        color: $font-color;
+        margin: 1.25rem 0;
+      }
+
+      #mr-link {
+        height: 2.5em;
+        width: 100%;
+
+        #mr-logo {
+          height: 2.5em;
+          width: 100%;
+
+          #logo-m {
+            fill: #FFFFFF;
+          }
+
+          #logo-r {
+            fill: #FF0000;
+          }
+        }
+      }
     }
 
     #circle-timer {
@@ -159,4 +186,26 @@ body {
       text-aling: center;
     }
   }
+}
+
+footer {
+
+     #copyright {
+          position: fixed;
+          bottom: 1em;
+          left: 2em;
+          color: #fff;
+     }
+
+     #footer-link {
+          position: fixed;
+          bottom: 1em;
+          right: 2em;
+          color: #fff;
+
+          &:hover {
+               color: #eee;
+          }
+     }
+
 }

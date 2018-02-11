@@ -16,7 +16,16 @@
 
     <!-- Timer -->
     <div id="timer">
-      <h1 id="time-remaining"></h1>
+      <div id="timer-information">
+        <h2 id="timer-type"></h2>
+        <h1 id="time-remaining"></h1>
+        <a id="mr-link" href="http://www.mreisz.com/" target="_blank">
+          <svg id="mr-logo" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.41421" clip-rule="evenodd" viewBox="0 0 62 35">
+            <path id="logo-m" fill-rule="nonzero" d="M0 34.359V0h6.844l8.133 24.328c.75 2.266 1.296 3.961 1.64 5.086.391-1.25 1-3.086 1.828-5.508L26.672 0h6.117v34.359h-4.383V5.602l-9.984 28.757H14.32L4.383 5.109v29.25H0z"/>
+            <path id="logo-r" d="M35.802 0H46.43c3.062 0 5.39.309 6.984.926 1.594.617 2.867 1.707 3.82 3.269.954 1.563 1.43 3.289 1.43 5.18 0 2.438-.789 4.492-2.367 6.164-1.578 1.672-4.016 2.734-7.313 3.188 1.204.578 2.118 1.148 2.743 1.71 1.328 1.219 2.586 2.743 3.773 4.571l5.977 9.351h-5.719l-4.547-7.148c-1.328-2.063-2.422-3.641-3.281-4.734-.86-1.094-1.629-1.86-2.309-2.297-.68-.438-1.371-.743-2.074-.914-.516-.11-1.359-.164-2.531-.164h-5.214v-3.938h9.714c2.078 0 3.703-.215 4.875-.644 1.171-.43 2.062-1.118 2.671-2.063.61-.945.915-1.973.915-3.082 0-1.625-.59-2.961-1.77-4.008-1.18-1.047-3.043-1.57-5.59-1.57H35.802V0z"/>
+          </svg>
+        </a>
+      </div>
       <svg id="circle-timer" xmlns="http://www.w3.org/2000/svg">
         <circle id="timer-backdrop" class="circle" r="45%" cy="50%" cx="50%" />
         <circle id="countdown-circle" class="circle" r="45%" cy="50%" cx="50%" />
@@ -50,6 +59,11 @@
     </div>
 
   </div>
+
+  <footer>
+    <span id="copyright">&copy; 2018 Michael Reisz</span>
+    <a id="footer-link" href="http://www.mreisz.com/" target="_blank">MReisz.com</a>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
