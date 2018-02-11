@@ -10,6 +10,7 @@ var circumference = Math.round(document.getElementById('countdown-circle').getBB
 $(document).ready(function() {
 
   $('#time-remaining').text(timerLength.formatted());
+  $('#timer-type').text("Click to Start");
   $('#session-length').text(sessionLength.formatted());
   $('#break-length').text(breakLength.formatted());
   $('#countdown-circle').addClass('session');
@@ -58,6 +59,7 @@ Number.prototype.formatted = function () {
 
 function startTimer() {
   timerRunning = true;
+  $('#timer-type').text(currentTimer);
   timer = setInterval(function() {
     $('#time-remaining').text(timerLength.formatted());
     if (timerLength == 0) {
@@ -83,6 +85,7 @@ function startTimer() {
 function stopTimer() {
   timerRunning = false;
   clearInterval(timer);
+  $('#timer-type').text("Click to Start");
 };
 
 function switchCurrentTimer() {
@@ -95,6 +98,7 @@ function switchCurrentTimer() {
     timerLength = sessionLength;
     timerStart = timerLength;
   }
+  $('#timer-type').text(currentTimer);
   $('#countdown-circle').toggleClass('session break');
 }
 
