@@ -1,10 +1,11 @@
 $background-color:  #111111;
 $font-color:        #FFFFFF;
 $session-circle:    #37ba16;
-$timer-diameter:    350px;
+$timer-diameter:    23em;
 $timer-circumference: ($timer-diameter * 3.14159);
-$timer-stroke:      20px;
+$timer-stroke:      1em;
 $break-circle:      #0081ff;
+
 * {
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
@@ -17,6 +18,27 @@ $break-circle:      #0081ff;
 
 html {
   font-size: 15px;
+}
+
+@media (min-resolution: 192dpi),
+(-webkit-min-device-pixel-ratio: 2),
+(min--moz-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
+  html {
+    font-size: 30px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3),
+(min--moz-device-pixel-ratio: 3),
+(-o-min-device-pixel-ratio: 3/1),
+(min-device-pixel-ratio: 3),
+(min-resolution: 3dppx) {
+  html {
+    font-size: 40px;
+  }
 }
 
 body {
@@ -84,7 +106,7 @@ body {
     #circle-timer {
       height: $timer-diameter;
       width: $timer-diameter;
-      stroke-width: 20;
+      stroke-width: $timer-stroke;
       fill: none;
       z-index: 99;
       border-radius: 50%;
@@ -98,7 +120,6 @@ body {
         transition: all 1s linear;
         fill: $background-color;
         z-index: 99;
-        // cursor: pointer;
 
         &.session {
           stroke: $session-circle;
@@ -126,9 +147,9 @@ body {
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
-      height: 125px;
-      width: 125px;
-      border: 5px solid;
+      height: 8.5em;
+      width: 8.5em;
+      border: .3em solid;
       border-radius: 50%;
       overflow: hidden;
     }
